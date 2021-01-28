@@ -1,8 +1,8 @@
 import express from "express";
 import bodyparser from "body-parser";
 import "dotenv/config";
-import router from "./src/routes";
-import errorHandler from "./src/middlewares/errorHandler";
+import router from "./routes";
+import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
 const port = process.env.PORT;
