@@ -1,6 +1,7 @@
 import conditionCheck from '../helpers/condition'
 import {ApplicationError} from '../helpers/error'
-const { checkCondition } = conditionCheck;
+import { fieldsValidation } from '../validators/validators'
+const { checkCondition, checkDataFieldType } = conditionCheck;
 
 export default {
     homePage(request, response) {
@@ -18,33 +19,46 @@ export default {
     },
 
     ruleCheck(request, response) {
+        const { error } = fieldsValidation(request.body)
+        if (error) throw new ApplicationError(400, error.message);
+        
         const { rule, data } = request.body;
 
-        if (rule.field in data) {
+        const dataType = checkDataFieldType(rule, data)
+        if (dataType) {
             let condition = checkCondition(rule, data);
-            if(condition) {
-                return response.status(200).json(
+            if(!condition) {
+                throw new ApplicationError(400,
+                    `field ${rule.field} failed validation.`,
                     {
-                        "message": `field ${rule.field} successfully validated.`,
-                        "status": "success",
-                        "data": {
-                            "validation": {
-                            "error": false,
+                        "validation": {
+                            "error": true,
                             "field": `${rule.field}`,
                             "field_value": `${data[rule.field]}`,
                             "condition": `${rule.condition}`,
                             "condition_value": `${rule.condition_value}`
-                            }
                         }
-                    })
+                    }
+                );
             }
+            return response.status(200).json({
+                "message": `field ${rule.field} successfully validated.`,
+                "status": "success",
+                "data": {
+                    "validation": {
+                        "error": false,
+                        "field": `${rule.field}`,
+                        "field_value": `${data[rule.field]}`,
+                        "condition": `${rule.condition}`,
+                        "condition_value": `${rule.condition_value}`
+                    }
+                }
+            })
+                
         }
-        throw new ApplicationError(400, `field ${rule.field} is missing from data.`);
-        // return response.status(400).json({
-        //     "message": `field ${rule.field} is missing from data.`,
-        //     "status": "error",
-        //     "data": null
-        // })
-
+        throw new ApplicationError(400,
+            `field ${rule.field} is missing from data.`,
+        );
     }
+
 }

@@ -1,10 +1,10 @@
 class ApplicationError extends Error {
 
-    constructor(message = 'an error occurred', status = "error", data = null) {
+    constructor(statusCode, message = 'an error occurred', data = null) {
       super(message);
+      this.statusCode = statusCode;
       this.message = message;
-      this.status = status;
-      this.data = data
+      this.data = data;
     }
 }
 
