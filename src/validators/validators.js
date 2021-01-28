@@ -17,6 +17,7 @@ const fieldsValidation = (fields) => {
             "any.required": "rule is required.",
             "object.base": "rule should be an object.",
         }),
+        
         data: Joi.required().messages({
             "any.required": "data is required.",
         })

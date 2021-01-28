@@ -1,6 +1,7 @@
-import conditionCheck from '../helpers/condition'
-import {ApplicationError} from '../helpers/error'
-import { fieldsValidation } from '../validators/validators'
+import conditionCheck from '../helpers/conditions';
+import { ApplicationError } from '../helpers/error';
+import { fieldsValidation } from '../validators/validators';
+
 const { checkCondition, checkDataFieldType } = conditionCheck;
 
 export default {
@@ -25,7 +26,7 @@ export default {
         const { rule, data } = request.body;
 
         const dataType = checkDataFieldType(rule, data)
-        if (dataType) {
+        if (dataType || dataType === 0) {
             let condition = checkCondition(rule, data);
             if(!condition) {
                 throw new ApplicationError(400,
