@@ -2,6 +2,10 @@
 
 This is an API for validating given data against specified set of rules. Check it out here: [Rule Validation API](https://flutterwave-rule-validation.herokuapp.com/)
 
+### Documentation
+
+A detailed documentation of the api can be found here: [API Documentation](https://documenter.getpostman.com/view/11752155/TW6xmnUG)
+
 ### Dependencies
 
 - [NodeJS (`>=12.0.0`)](https://nodejs.org/en/download/)
