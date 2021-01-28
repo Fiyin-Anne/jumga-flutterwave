@@ -2,19 +2,19 @@
 
 This is an API for validating given data against specified set of rules. Check it out here: [Rule Validation API](https://flutterwave-rule-validation.herokuapp.com/)
 
-#### [Dependencies](#dependencies)
+### Dependencies
 
 - [NodeJS (`>=12.0.0`)](https://nodejs.org/en/download/)
 - [ExpressJS](https://expressjs.com/)
 
-#### [Run Project Locally](#run-project-locally)
+### Run Project Locally
 
 - Clone the project
 - cd into the project's folder and run `npm install` to install dependencies
 - Create a `.env` file and add `PORT` value to it
 - Run `npm run dev` to start the server
 
-##### [HTTP Requests](#http-requests)
+#### HTTP Requests
 
 All API requests are made by sending a secure HTTPS request using one of the following methods:
 
@@ -23,8 +23,7 @@ All API requests are made by sending a secure HTTPS request using one of the fol
 
 For `POST`, the body of your request must be a JSON payload.
 
-##### [HTTP Response Codes](#http-response-codes)
-
+#### HTTP Response Codes
 Each response will be returned with one of the following HTTP status codes:
 
 - `200` `OK` Successful request
