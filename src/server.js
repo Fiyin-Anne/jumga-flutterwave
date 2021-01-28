@@ -10,9 +10,8 @@ const port = process.env.PORT;
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false}));
-
-app.use('/', router);
 app.use(cors())
+app.use('/', router);
 app.use(errorHandler)
 
 app.listen(port, (err) => {
